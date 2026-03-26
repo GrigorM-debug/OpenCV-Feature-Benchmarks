@@ -2,8 +2,8 @@ import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
 
-img1 = cv.imread('image_left.jpg', cv.IMREAD_GRAYSCALE)
-img2 = cv.imread('image_rigth.jpg', cv.IMREAD_GRAYSCALE)
+img1 = cv.imread('images/image_left.jpg', cv.IMREAD_GRAYSCALE)
+img2 = cv.imread('images/image_rigth.jpg', cv.IMREAD_GRAYSCALE)
 
 orb = cv.ORB.create()
 

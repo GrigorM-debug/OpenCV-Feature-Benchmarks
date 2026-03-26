@@ -2,13 +2,13 @@ import numpy as np
 import cv2 as cv
 import matplotlib.pyplot as plt
 
-img1 = cv.imread('image_left.jpg', cv.IMREAD_GRAYSCALE)
-img2 = cv.imread('image_rigth.jpg', cv.IMREAD_GRAYSCALE)
+img1 = cv.imread('images/image_left.jpg', cv.IMREAD_GRAYSCALE)
+img2 = cv.imread('images/image_rigth.jpg', cv.IMREAD_GRAYSCALE)
 
-orb = cv.AKAZE.create()
+akaze = cv.AKAZE.create()
 
-kp1, des1 = orb.detectAndCompute(img1, None)
-kp2, des2 = orb.detectAndCompute(img2, None)
+kp1, des1 = akaze.detectAndCompute(img1, None)
+kp2, des2 = akaze.detectAndCompute(img2, None)
 
 bf = cv.BFMatcher()
 matches = bf.knnMatch(des1,des2,k=2)

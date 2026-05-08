@@ -1,5 +1,4 @@
 numpy
 opencv-python
 matplotlib
-torch
-torchvision
+pygame

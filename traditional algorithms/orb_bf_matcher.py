@@ -1,4 +1,5 @@
 import argparse
+from datetime import datetime
 from pathlib import Path
 
 import cv2 as cv
@@ -106,7 +107,8 @@ def main():
     )
     results_dir = Path(__file__).resolve().parent.parent / "results/traditional_algorithms"
     results_dir.mkdir(exist_ok=True)
-    output_path = results_dir / "ORB_BF_Matcher.png"
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    output_path = results_dir / f"ORB_BF_Matcher_{timestamp}.png"
     cv.imwrite(str(output_path), img3)
 
     cv.namedWindow("ORB BF Matches", cv.WINDOW_FULLSCREEN)

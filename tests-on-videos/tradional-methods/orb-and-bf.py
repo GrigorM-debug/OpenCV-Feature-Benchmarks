@@ -59,9 +59,9 @@ class FeatureMatcher(object):
         self.prev_kp = None
         self.prev_des = None
         self.bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=False)
-        self.keypoint_radius = 8
-        self.keypoint_thickness = 4
-        self.match_line_thickness = 4
+        self.keypoint_radius = 5
+        self.keypoint_thickness = -1  # filled circles are easier to see
+        self.match_line_thickness = 2
 
     def match_and_draw(self, gray, kp, des):
         vis = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
@@ -89,18 +89,28 @@ class FeatureMatcher(object):
             if m.distance < 0.75 * n.distance:
                 good.append(m)
 
-        p_prev = self.prev_kp[m.queryIdx].pt
-        p_curr = kp[m.trainIdx].pt
-        x1, y1 = int(p_prev[0]), int(p_prev[1])
-        x2, y2 = int(p_curr[0]), int(p_curr[1])
-        cv2.line(vis, (x1, y1), (x2, y2), (255, 0, 0), self.match_line_thickness)
-        cv2.circle(
-            vis,
-            (x2, y2),
-            self.keypoint_radius,
-            (0, 255, 0),
-            self.keypoint_thickness,
-        )
+        for m in good:
+            p_prev = self.prev_kp[m.queryIdx].pt
+            p_curr = kp[m.trainIdx].pt
+            x1, y1 = int(p_prev[0]), int(p_prev[1])
+            x2, y2 = int(p_curr[0]), int(p_curr[1])
+
+            cv2.line(
+                vis,
+                (x1, y1),
+                (x2, y2),
+                (0, 255, 255),  # yellow line on grayscale background
+                self.match_line_thickness,
+                cv2.LINE_AA,
+            )
+            cv2.circle(
+                vis,
+                (x2, y2),
+                self.keypoint_radius,
+                (0, 0, 255),  # red keypoints are very visible
+                self.keypoint_thickness,
+                cv2.LINE_AA,
+            )
     
         self.prev_gray, self.prev_kp, self.prev_des = gray, kp, des
         

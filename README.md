@@ -4,12 +4,12 @@ Some time ago, I got interested in Simultaneous Localization and Mapping (SLAM) 
 
 There are a lot of algorithms you can use. They can be split into two groups:
 **Feature Extraction**
-    - Traditional: SIFT, ORB, AKAZE (most popular)
-    - Deep-Learning based: SuperPoint, DISK, ALIKED
+- Traditional: SIFT, ORB, AKAZE
+- Deep-Learning based: SuperPoint, DISK, ALIKED
 
 **Feature Matching**
-    - Traditional: BF Matcher, FLANN
-    - Deep-Learning based: SuperGlue, LightGlue
+- Traditional: BF Matcher, FLANN
+- Deep-Learning based: SuperGlue, LightGlue
 
 I decided to test them and see how they perform. I made several tests on images and videos. I also made two benchmark tests for speed and accuracy.
 

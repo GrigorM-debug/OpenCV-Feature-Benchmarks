@@ -6,7 +6,7 @@ W = 1920//2
 H = 1080//2
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="SuperPoint + LightGlue feature matching")
+    parser = argparse.ArgumentParser(description="ORB + BF Matcher feature matching")
     parser.add_argument(
         "video",
         type=str,
@@ -22,7 +22,7 @@ class Display2D(object):
         self.H = H
         pygame.init()
         self.window = pygame.display.set_mode((W, H))
-        pygame.display.set_caption("Noob SLAM")
+        pygame.display.set_caption("ORB + BF_Matcher")
         self.clock = pygame.time.Clock()
         self.font = pygame.font.SysFont("Arial", 30, bold=True)
 
@@ -60,7 +60,7 @@ class FeatureMatcher(object):
         self.prev_des = None
         self.bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=False)
         self.keypoint_radius = 5
-        self.keypoint_thickness = -1  # filled circles are easier to see
+        self.keypoint_thickness = -1  
         self.match_line_thickness = 2
 
     def match_and_draw(self, gray, kp, des):
@@ -99,7 +99,7 @@ class FeatureMatcher(object):
                 vis,
                 (x1, y1),
                 (x2, y2),
-                (0, 255, 255),  # yellow line on grayscale background
+                (0, 255, 255),  
                 self.match_line_thickness,
                 cv2.LINE_AA,
             )
@@ -107,7 +107,7 @@ class FeatureMatcher(object):
                 vis,
                 (x2, y2),
                 self.keypoint_radius,
-                (0, 0, 255),  # red keypoints are very visible
+                (0, 0, 255),  
                 self.keypoint_thickness,
                 cv2.LINE_AA,
             )

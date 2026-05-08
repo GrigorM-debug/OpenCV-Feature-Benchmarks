@@ -3,6 +3,7 @@ The repository contains Python scripts for testing Feature Extraction and Featur
 Some time ago, I got interested in Simultaneous Localization and Mapping (SLAM) and started reading and watching lectures and other content about it, especially Monocular Visual SLAM. Feature Extraction and Feature Matching are part of Monocular Visual SLAM, also known as the front-end part.
 
 There are a lot of algorithms you can use. They can be split into two groups:
+
 **Feature Extraction**
 - Traditional: SIFT, ORB, AKAZE
 - Deep-Learning based: SuperPoint, DISK, ALIKED

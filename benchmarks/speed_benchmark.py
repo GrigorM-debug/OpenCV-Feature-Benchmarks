@@ -98,33 +98,48 @@ def plot_results(results, output_path) -> None:
     stds     = [r["std_ms"]    for r in results]
     keypts   = [r["keypoints"] for r in results]
 
-    x      = np.arange(len(names))
-    width  = 0.4
-    colors = plt.cm.tab10.colors
+    x = np.arange(len(names))
+    width = 0.5
+    colors = plt.cm.Set2.colors
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
-    fig.suptitle("Feature Extraction – Speed Comparison", fontsize=14, fontweight="bold")
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5), constrained_layout=True)
+    fig.suptitle("Feature Extraction - Speed Comparison", fontsize=14, fontweight="bold")
 
-    bars = ax1.bar(x, means, width, yerr=stds, capsize=4,
-                   color=colors[:len(names)], edgecolor="black", linewidth=0.6)
+    bars = ax1.bar(
+        x,
+        means,
+        width,
+        color=colors[:len(names)],
+        edgecolor="black",
+        linewidth=0.8,
+    )
     ax1.set_xticks(x)
-    ax1.set_xticklabels(names, rotation=20, ha="right")
+    ax1.set_xticklabels(names, rotation=15)
     ax1.set_ylabel("Mean detection time (ms)")
     ax1.set_title("Detection Speed")
+    ax1.grid(axis="y", linestyle="--", alpha=0.35)
     ax1.bar_label(bars, fmt="%.1f ms", padding=4, fontsize=8)
-    ax1.set_ylim(0, max(means) * 1.3)
+    max_mean = max(means) if means else 1.0
+    ax1.set_ylim(0, max_mean * 1.2 if max_mean > 0 else 1.0)
 
-    bars2 = ax2.bar(x, keypts, width,
-                    color=colors[:len(names)], edgecolor="black", linewidth=0.6)
+    bars2 = ax2.bar(
+        x,
+        keypts,
+        width,
+        color=colors[:len(names)],
+        edgecolor="black",
+        linewidth=0.8,
+    )
     ax2.set_xticks(x)
-    ax2.set_xticklabels(names, rotation=20, ha="right")
+    ax2.set_xticklabels(names, rotation=15)
     ax2.set_ylabel("Keypoints detected (avg)")
     ax2.set_title("Keypoints per Image")
+    ax2.grid(axis="y", linestyle="--", alpha=0.35)
     ax2.bar_label(bars2, padding=4, fontsize=8)
-    ax2.set_ylim(0, max(keypts) * 1.3 if keypts else 1)
+    max_keypts = max(keypts) if keypts else 1
+    ax2.set_ylim(0, max_keypts * 1.35 if max_keypts > 0 else 1.0)
 
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=150)
+    plt.savefig(output_path, dpi=180, bbox_inches="tight")
     print(f"[INFO] Chart saved → {output_path}")
     plt.show()
 

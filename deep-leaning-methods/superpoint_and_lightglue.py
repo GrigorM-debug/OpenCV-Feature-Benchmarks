@@ -16,7 +16,7 @@ def parse_args():
 def main():
     args = parse_args()
 
-    extractor = SuperPoint(max_num_keypoints=None).eval().cuda()
+    extractor = SuperPoint(max_num_keypoints=2048).eval().cuda()
     matcher = LightGlue(features='superpoint').eval().cuda()
 
     image0 = load_image(args.image0).cuda()

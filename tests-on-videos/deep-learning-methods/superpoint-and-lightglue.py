@@ -65,7 +65,15 @@ class Display2D(object):
 class FeatureExtractor(object):
     def __init__(self):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.extractor = SuperPoint(max_num_keypoints=None).eval().to(self.device)
+        
+        # Default params
+        # self.extractor = SuperPoint(max_num_keypoints=2048).eval().to(self.device)
+
+        # Accuracy params
+        # self.extractor = SuperPoint(max_num_keypoints=None).eval().to(self.device)
+
+        # Speed params
+        self.extractor = SuperPoint(max_num_keypoints=1024).eval().to(self.device)
 
     def extract(self, gray):
         # Convert grayscale uint8 frame to tensor [1, 1, H, W] in [0, 1].
@@ -77,7 +85,15 @@ class FeatureExtractor(object):
 
 class FeatureMatcher(object):
     def __init__(self, device):
-        self.matcher = LightGlue(features="superpoint").eval().to(device)
+        #default parameters
+        # self.matcher = LightGlue(features="superpoint").eval().to(device)
+        
+        #Paramers to maximize the accuracy
+        # self.matcher = LightGlue(features='superpoint', depth_confidence=-1, width_confidence=-1).eval().to(device)
+        
+        #Parameters for speed
+        self.matcher = LightGlue(features='superpoint', depth_confidence=0.9, width_confidence=0.95).eval().to(device)
+        
         self.prev_feats = None
         self.score_threshold = 0.2
         self.keypoint_radius = 5

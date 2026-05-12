@@ -5,8 +5,8 @@ Benchmarks the detection + description speed of multiple OpenCV
 feature extraction algorithms across one or more images.
 
 Usage:
-    python benchmarks/speed_benchmark.py --images images/image_left.jpg
-    python benchmarks/speed_benchmark.py --images images/image_left.jpg images/image_rigth.jpg
+    python speed_benchmark.py --images "../images/image3.jpg"
+    python speed_benchmark.py --images "../images/image3.jpg" "../images/image4.jpg"
 """
 
 import time

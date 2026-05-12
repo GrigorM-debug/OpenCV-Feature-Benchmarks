@@ -13,9 +13,9 @@ Metrics reported:
   - Inlier ratio (inliers / good matches)
 
 Usage:
-    python benchmarks/accuracy_benchmark.py --left images/image_left.jpg --right images/image_rigth.jpg --matcher bf_matcher
-    python benchmarks/accuracy_benchmark.py --left images/image_left.jpg --right images/image_rigth.jpg --matcher flann
-    python benchmarks/accuracy_benchmark.py --left images/image_left.jpg --right images/image_rigth.jpg --matcher bf_matcher --ratio 0.8 
+    python accuracy_benchmark.py --left "../images/image11.jpeg" --right "../images/image12.jpeg" --matcher bf_matcher
+    python accuracy_benchmark.py --left "../images/image11.jpeg" --right "../images/image12.jpeg" --matcher flann
+    python accuracy_benchmark.py --left "../images/image11.jpeg" --right "../images/image12.jpeg" --matcher bf_matcher --ratio 0.8 
 """
 
 import argparse

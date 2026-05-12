@@ -36,6 +36,8 @@ To use the Deep-Learning based methods, you need to install a few extra things. 
    python -m pip install -e .
    ```
 
+LightGlue Github repository: https://github.com/cvg/lightglue
+
 Deep-Learning algorithms use PyTorch under the hood. When you run the commands above, PyTorch will be installed, but in my case it was a CPU-only version and when I ran the script I got an error. Yes, you can run the deep-learning methods on the CPU, but it will be slow. To fix the problem, I had to uninstall the installed version of PyTorch using:
 
 ```bash
@@ -119,3 +121,44 @@ Then run the script. Example command:
 python superpoint-and-lightglue.py "../videos/video2.mp4"
 ```
 
+## Benchmarks
+
+First you have to go to the benchmarks directory using 
+
+```bash
+cd benchmarks
+```
+
+**Tradional methods**
+Example for running the tradional methods
+
+***Accuracy benchmark***:
+
+```bash
+    python accuracy_benchmark.py --left "../images/image11.jpeg" --right "../images/image12.jpeg" --matcher bf_matcher
+    python accuracy_benchmark.py --left "../images/image11.jpeg" --right "../images/image12.jpeg" --matcher flann
+
+```
+
+***Speed benchmark***
+```bash
+python speed_bechmark.py --images "../images/image3.jpg"
+python speed_bechmark.py --images "../images/image3.jpg" "..images/image4.jpg"
+```
+
+**Deep Learning methods**
+Go to the directory
+
+```bash
+cd "deep-learning methods"
+```
+
+***Accuracy bechmark***
+```bash
+python deep_accuracy_bechmark.py --left "../../images/image7.jpg" --right "../../images/image8.jpg"
+```
+
+***Speed benchmark***
+```bash
+python deep_speed_bechmark.py --images "../../images/image7.jpg" "../../images/image8.jpg"
+```

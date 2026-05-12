@@ -130,6 +130,7 @@ cd benchmarks
 ```
 
 **Tradional methods**
+
 Example for running the tradional methods
 
 ***Accuracy benchmark***:
@@ -147,6 +148,7 @@ python speed_bechmark.py --images "../images/image3.jpg" "..images/image4.jpg"
 ```
 
 **Deep Learning methods**
+
 Go to the directory
 
 ```bash
